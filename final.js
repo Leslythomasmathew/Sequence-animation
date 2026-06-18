@@ -1,25 +1,33 @@
-const box1 = document.querySelector("#box1");
-const box2 = document.querySelector("#box2");
-const box3 = document.querySelector("#box3");
+const box = document.getElementById("box");
+const text = document.getElementById("text");
 
-const animation = [
-    { transform: "rotate(0deg) scale(1)" },
-    { transform: "rotate(360deg) scale(0.5)" }
-];
+async function startAnimation() {
 
-const timing = {
-    duration: 1000,
-    fill: "forwards"
-};
+    await box.animate(
+        [
+            {
+                transform: "scale(1) rotate(0deg)",
+                opacity: 1
+            },
+            {
+                transform: "scale(0) rotate(720deg)",
+                opacity: 0
+            }
+        ],
+        {
+            duration: 2500,
+            fill: "forwards",
+            easing: "ease-in-out"
+        }
+    ).finished;
 
-async function animateBoxes() {
-    try {
-        await box1.animate(animation, timing).finished;
-        await box2.animate(animation, timing).finished;
-        await box3.animate(animation, timing).finished;
-    } catch (err) {
-        console.error(err);
-    }
+    box.style.display = "none";
+
+    document.body.style.backgroundColor = "black";
+
+    setTimeout(() => {
+        text.style.opacity = "1";
+    }, 1000);
 }
 
-animateBoxes();
+startAnimation();
