@@ -10,7 +10,7 @@ body{
     justify-content:center;
     align-items:center;
     gap:30px;
-    background:white;
+    background:black;
     transition:background-color 2s ease;
 }
 
